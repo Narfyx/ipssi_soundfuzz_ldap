@@ -1,6 +1,6 @@
 # --- Charger le module ppolicy ---
 dn: cn=module{0},cn=config
-changetype: modify
+changetype: add
 add: olcModuleLoad
 olcModuleLoad: ppolicy.la
 -
