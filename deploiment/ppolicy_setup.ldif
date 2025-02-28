@@ -1,8 +1,7 @@
 # --- Charger le module ppolicy ---
 dn: cn=module{0},cn=config
-changetype: add
+changetype: modify
 add: olcModuleLoad
-olcModuleLoad: ppolicy.la
 -
 
 # --- Activer l'overlay ppolicy sur la base LDAP (ici olcDatabase={1}mdb) ---
