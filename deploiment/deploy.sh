@@ -25,8 +25,8 @@ docker build -t ldap-openldap:stable .
 echo "=== Lancement du container OpenLDAP ==="
 docker run -d --name openldap-server \
     -p 389:389 \
-    -v ldap_data:/var/lib/ldap \
-    -v ldap_config:/etc/ldap/slapd.d \
+    -v /srv/docker/ldap_data:/var/lib/ldap \
+    -v /srv/docker/ldap_config:/etc/ldap/slapd.d \
     ldap-openldap:stable
 
 echo "=== Déploiement terminé. Vérifiez l'état du container avec 'docker ps'. ==="
