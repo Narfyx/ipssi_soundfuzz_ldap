@@ -3,8 +3,8 @@ FROM debian:bullseye-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Installation d'OpenLDAP (version stable) et des outils LDAP
-RUN apt-get update && \
-    apt-get install -y slapd ldap-utils && \
+RUN apt-get update -q && \
+    apt-get install -yq slapd ldap-utils && \
     rm -rf /var/lib/apt/lists/*
 
 # Copier les fichiers de configuration et d'initialisation

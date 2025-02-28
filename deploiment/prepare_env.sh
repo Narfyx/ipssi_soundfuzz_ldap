@@ -12,19 +12,19 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "=== Mise à jour initiale du système ==="
-apt-get update -y
-apt-get upgrade -y
+apt-get update -yq
+apt-get upgrade -yq
 
 echo "=== Vérification de l'installation de sudo ==="
 if ! command -v sudo &> /dev/null; then
     echo "sudo n'est pas installé. Installation de sudo..."
-    apt-get install -y sudo
+    apt-get install -yq sudo
 else
     echo "sudo est déjà installé."
 fi
 
 echo "=== Installation des dépendances nécessaires pour Docker ==="
-apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+apt-get install -yq apt-transport-https ca-certificates curl gnupg lsb-release
 
 echo "=== Ajout de la clé GPG officielle de Docker ==="
 curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -33,10 +33,10 @@ echo "=== Ajout du dépôt Docker stable ==="
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 echo "=== Mise à jour des paquets après ajout du dépôt Docker ==="
-apt-get update -y
+apt-get update -yq
 
 echo "=== Installation de Docker CE, Docker CE CLI et containerd ==="
-apt-get install -y docker-ce docker-ce-cli containerd.io
+apt-get install -yq docker-ce docker-ce-cli containerd.io
 
 echo "=== Configuration de Docker pour démarrer automatiquement ==="
 systemctl enable docker
